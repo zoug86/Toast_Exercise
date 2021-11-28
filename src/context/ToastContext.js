@@ -27,11 +27,15 @@ export const ToastContextProvider = ({ children }) => {
                 const response = await fetchLikedFormSubmissions();
                 setLikedForms(response.formSubmissions);
             } catch (error) {
-                console.log(error);
-                setInterval(() => {
-                    getLikedForms();
+                const id = setInterval(async () => {
+                    const response = await fetchLikedFormSubmissions();
+                    if (response.formSubmissions.length > 0) {
+                        setLikedForms(response.formSubmissions);
+                        clearInterval(id);
+                    }
                 }, 3000);
             }
+
         };
         getLikedForms();
     }, [formInfo]);
