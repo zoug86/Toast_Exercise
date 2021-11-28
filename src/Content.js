@@ -20,7 +20,7 @@ export default function Content() {
     <Box sx={{ marginTop: 3 }}>
       <Typography variant="h4">Liked Form Submissions</Typography>
       {likedForms.length > 0 ? (
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: '#f6f6f6', m: '10px' }}>
+        <List sx={{ width: '100%', maxWidth: 600, bgcolor: '#f6f6f6', m: '20px 0' }}>
           {likedForms.map((form, index) => (
             <React.Fragment key={index}>
               <ListItem alignItems="flex-start">
@@ -39,7 +39,7 @@ export default function Content() {
                       >
                         {form.email}
                       </Typography>
-                      {" — I'll be in your neighborhood doing errands this…"}
+                      {` — This is a cool challenge! Material UI rocks…`}
                     </React.Fragment>
                   }
                 />
@@ -51,7 +51,7 @@ export default function Content() {
         </List>
       ) : (
         <Box sx={{ p: 3 }}>
-          <Typography variant="h5">No liked forms yet</Typography>
+          <Typography variant="h5" color="text.secondary">Liked Forms List Empty</Typography>
         </Box>
       )}
       <Toast />

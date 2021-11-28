@@ -23,8 +23,8 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="static" sx={{ height: '120px', backgroundColor: '#000' }}>
+        <Toolbar sx={{ height: '120px' }}>
           <IconButton
             edge="start"
             color="inherit"
@@ -39,8 +39,9 @@ export default function Header() {
           <Button
             variant="contained"
             size="small"
-            color="secondary"
+            color="success"
             onClick={handleClick}
+            sx={{ padding: '15px 20px', fontSize: '15px' }}
           >
             New Submission
           </Button>

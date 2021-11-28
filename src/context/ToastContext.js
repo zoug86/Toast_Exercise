@@ -23,8 +23,14 @@ export const ToastContextProvider = ({ children }) => {
 
     useEffect(() => {
         const getLikedForms = async () => {
-            const data = await fetchLikedFormSubmissions();
-            setLikedForms(data.formSubmissions);
+            try {
+                const response = await fetchLikedFormSubmissions();
+                setLikedForms(response.formSubmissions);
+            } catch (error) {
+                console.log(error);
+                const response = await fetchLikedFormSubmissions();
+                setLikedForms(response.formSubmissions);
+            }
         };
         getLikedForms();
     }, [formInfo]);
