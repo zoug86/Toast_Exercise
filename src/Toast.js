@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import { saveFormSubmission } from './service/mockServer';
 
 export default function PositionedSnackbar() {
-    const { open, vertical, horizontal, setOpen, formInfo, setFormInfo } = useContext(ToastContext);
+    const { open, vertical, horizontal, setOpen, likedForms, formInfo, setFormInfo } = useContext(ToastContext);
 
     const handleClose = () => {
         setOpen(false);
@@ -19,10 +19,14 @@ export default function PositionedSnackbar() {
     const handleLikeClick = async () => {
         try {
             const updatedFormInfo = { ...formInfo, liked: true };
-            await saveFormSubmission(updatedFormInfo);
-            setFormInfo(updatedFormInfo);
+            if (likedForms.findIndex(form => form.email === updatedFormInfo.email) === -1) {
+                await saveFormSubmission(updatedFormInfo);
+                setFormInfo(updatedFormInfo);
+            } else {
+                alert('You have already liked this form 😆');
+            }
         } catch (error) {
-            alert(`${error.message} — Please Click the LIKE button again or exit.`);
+            alert(`${error.message} — Please Click the LIKE button again or exit 😢`);
         }
     };
 
