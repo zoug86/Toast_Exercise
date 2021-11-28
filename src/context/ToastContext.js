@@ -28,8 +28,9 @@ export const ToastContextProvider = ({ children }) => {
                 setLikedForms(response.formSubmissions);
             } catch (error) {
                 console.log(error);
-                const response = await fetchLikedFormSubmissions();
-                setLikedForms(response.formSubmissions);
+                setInterval(() => {
+                    getLikedForms();
+                }, 3000);
             }
         };
         getLikedForms();
